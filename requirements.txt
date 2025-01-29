@@ -1,0 +1,15 @@
+# Core dependencies
+torch>=2.2.0
+diffusers>=0.25.0
+transformers>=4.38.2
+accelerate>=0.27.0
+safetensors>=0.4.0
+numpy==1.26.4  # Specific version for compatibility
+
+# Image processing
+Pillow>=10.2.0
+
+# API and utilities
+requests>=2.31.0
+python-dotenv>=1.0.0
+praw>=7.8.1
