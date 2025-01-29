@@ -7,7 +7,7 @@ An AI-powered meme generator that creates images based on trending Reddit meme t
 - Fetches trending meme text from Reddit
 - Generates contextually relevant images using Stable Diffusion
 - Automatic device selection (CUDA > MPS > CPU)
-- Efficient image generation with 30 inference steps
+- Efficient image generation with customizable number of inference steps
 - Text overlay with system font detection
 - White text with black outline for readability
 - Memory-efficient operations on all platforms
@@ -24,7 +24,7 @@ An AI-powered meme generator that creates images based on trending Reddit meme t
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/meme-generator.git
+git clone https://github.com/adithyab100/meme-generator.git
 cd meme-generator
 ```
 
@@ -32,6 +32,32 @@ cd meme-generator
 ```bash
 pip install -r requirements.txt
 ```
+
+## Model Setup
+
+This project uses the Stable Diffusion v1.4 model from CompVis, hosted on Hugging Face. To use the model:
+
+1. Create a Hugging Face account at [huggingface.co](https://huggingface.co)
+2. Accept the model license at [CompVis/stable-diffusion-v1-4](https://huggingface.co/CompVis/stable-diffusion-v1-4)
+3. Create a Hugging Face token:
+   - Go to Settings → Access Tokens
+   - Create a new token with read access
+   - Set the token as an environment variable:
+     ```bash
+     export HUGGING_FACE_HUB_TOKEN=your_token_here
+     ```
+   - Or add it to your .env file:
+     ```env
+     HUGGING_FACE_HUB_TOKEN=your_token_here
+     ```
+
+The model will be automatically downloaded on first use. The default configuration uses:
+- Model: CompVis Stable Diffusion v1.4
+- Resolution: 512x512
+- Inference Steps: 40 (customizable)
+- Guidance Scale: 7.5
+
+You can modify these parameters in `config.py` or pass them directly when calling `generate_image()`.
 
 ## Usage
 
@@ -64,7 +90,7 @@ from src.image_generator import ImageGenerator
 from src.text_overlay import TextOverlay
 
 # Initialize generators
-image_gen = ImageGenerator("runwayml/stable-diffusion-v1-5")
+image_gen = ImageGenerator("CompVis/stable-diffusion-v1-4")
 text_overlay = TextOverlay()
 
 # Generate a custom meme
